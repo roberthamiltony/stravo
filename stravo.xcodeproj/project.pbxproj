@@ -10,11 +10,13 @@
 		7222768823E011D800D8E72F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7222768723E011D800D8E72F /* AppDelegate.swift */; };
 		7222768A23E011D800D8E72F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7222768923E011D800D8E72F /* SceneDelegate.swift */; };
 		7222768C23E011D800D8E72F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7222768B23E011D800D8E72F /* ViewController.swift */; };
-		7222768F23E011D800D8E72F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7222768D23E011D800D8E72F /* Main.storyboard */; };
 		7222769123E011E000D8E72F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7222769023E011E000D8E72F /* Assets.xcassets */; };
 		7222769423E011E000D8E72F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7222769223E011E000D8E72F /* LaunchScreen.storyboard */; };
 		7222769F23E011E000D8E72F /* stravoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7222769E23E011E000D8E72F /* stravoTests.swift */; };
 		722276AA23E011E000D8E72F /* stravoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722276A923E011E000D8E72F /* stravoUITests.swift */; };
+		722276BA23E0145C00D8E72F /* SplashCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722276B923E0145C00D8E72F /* SplashCoordinator.swift */; };
+		722276BD23E0148200D8E72F /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722276BC23E0148200D8E72F /* Coordinator.swift */; };
+		722276BF23E0173A00D8E72F /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722276BE23E0173A00D8E72F /* AppCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +41,6 @@
 		7222768723E011D800D8E72F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7222768923E011D800D8E72F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		7222768B23E011D800D8E72F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		7222768E23E011D800D8E72F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7222769023E011E000D8E72F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7222769323E011E000D8E72F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7222769523E011E000D8E72F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +50,9 @@
 		722276A523E011E000D8E72F /* stravoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = stravoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		722276A923E011E000D8E72F /* stravoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stravoUITests.swift; sourceTree = "<group>"; };
 		722276AB23E011E000D8E72F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		722276B923E0145C00D8E72F /* SplashCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashCoordinator.swift; sourceTree = "<group>"; };
+		722276BC23E0148200D8E72F /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		722276BE23E0173A00D8E72F /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,13 +103,16 @@
 		7222768623E011D800D8E72F /* stravo */ = {
 			isa = PBXGroup;
 			children = (
+				722276BB23E0146700D8E72F /* utilities */,
+				722276B823E0143900D8E72F /* dashboard */,
+				722276B723E0142800D8E72F /* splash */,
 				7222768723E011D800D8E72F /* AppDelegate.swift */,
 				7222768923E011D800D8E72F /* SceneDelegate.swift */,
 				7222768B23E011D800D8E72F /* ViewController.swift */,
-				7222768D23E011D800D8E72F /* Main.storyboard */,
 				7222769023E011E000D8E72F /* Assets.xcassets */,
 				7222769223E011E000D8E72F /* LaunchScreen.storyboard */,
 				7222769523E011E000D8E72F /* Info.plist */,
+				722276BE23E0173A00D8E72F /* AppCoordinator.swift */,
 			);
 			path = stravo;
 			sourceTree = "<group>";
@@ -126,6 +133,29 @@
 				722276AB23E011E000D8E72F /* Info.plist */,
 			);
 			path = stravoUITests;
+			sourceTree = "<group>";
+		};
+		722276B723E0142800D8E72F /* splash */ = {
+			isa = PBXGroup;
+			children = (
+				722276B923E0145C00D8E72F /* SplashCoordinator.swift */,
+			);
+			path = splash;
+			sourceTree = "<group>";
+		};
+		722276B823E0143900D8E72F /* dashboard */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = dashboard;
+			sourceTree = "<group>";
+		};
+		722276BB23E0146700D8E72F /* utilities */ = {
+			isa = PBXGroup;
+			children = (
+				722276BC23E0148200D8E72F /* Coordinator.swift */,
+			);
+			path = utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,7 +264,6 @@
 			files = (
 				7222769423E011E000D8E72F /* LaunchScreen.storyboard in Resources */,
 				7222769123E011E000D8E72F /* Assets.xcassets in Resources */,
-				7222768F23E011D800D8E72F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,7 +288,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				722276BF23E0173A00D8E72F /* AppCoordinator.swift in Sources */,
 				7222768C23E011D800D8E72F /* ViewController.swift in Sources */,
+				722276BA23E0145C00D8E72F /* SplashCoordinator.swift in Sources */,
+				722276BD23E0148200D8E72F /* Coordinator.swift in Sources */,
 				7222768823E011D800D8E72F /* AppDelegate.swift in Sources */,
 				7222768A23E011D800D8E72F /* SceneDelegate.swift in Sources */,
 			);
@@ -297,14 +329,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		7222768D23E011D800D8E72F /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7222768E23E011D800D8E72F /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		7222769223E011E000D8E72F /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
