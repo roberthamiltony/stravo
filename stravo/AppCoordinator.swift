@@ -9,14 +9,21 @@
 import Foundation
 import UIKit
 
+/// The intention of the AppCoordinator class is to provide coordination between the different app flows. In
+/// practise, this means handling the Coordinator instances for the subflowa through the app.
 class AppCoordinator: Coordinator {
+    
+    /// A coordinator to handle the OOB flow.
     var splashCoordinator: SplashCoordinator?
+    
+    // TODO store this in user defaults
+    private static var shouldShowSplash = true
+    
     override func start() {
         navigationController.navigationBar.prefersLargeTitles = true
-        navigationController.title = "Hi!"
-        
-        let dummyVC = UIViewController()
-        dummyVC.view.backgroundColor = UIColor.cyan
-        navigationController.pushViewController(dummyVC, animated: false)
+        if AppCoordinator.shouldShowSplash {
+            let splash = SplashCoordinator(navigationController: navigationController)
+            splash.start()
+        }
     }
 }

@@ -14,8 +14,8 @@ import UIKit
 class Coordinator {
     let navigationController: UINavigationController
     /// Initializes a Coordinator instance, with a navigation controller.
-    /// - Parameter navigationController: An instnace of UINavigationController, through which the coordinator
-    /// presents flows.
+    /// - Parameter navigationController: An instnace of UINavigationController, through which the
+    /// coordinator presents flows.
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
