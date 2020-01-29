@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		7222768823E011D800D8E72F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7222768723E011D800D8E72F /* AppDelegate.swift */; };
 		7222768A23E011D800D8E72F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7222768923E011D800D8E72F /* SceneDelegate.swift */; };
-		7222768C23E011D800D8E72F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7222768B23E011D800D8E72F /* ViewController.swift */; };
 		7222769123E011E000D8E72F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7222769023E011E000D8E72F /* Assets.xcassets */; };
 		7222769423E011E000D8E72F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7222769223E011E000D8E72F /* LaunchScreen.storyboard */; };
 		7222769F23E011E000D8E72F /* stravoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7222769E23E011E000D8E72F /* stravoTests.swift */; };
@@ -17,6 +16,13 @@
 		722276BA23E0145C00D8E72F /* SplashCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722276B923E0145C00D8E72F /* SplashCoordinator.swift */; };
 		722276BD23E0148200D8E72F /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722276BC23E0148200D8E72F /* Coordinator.swift */; };
 		722276BF23E0173A00D8E72F /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722276BE23E0173A00D8E72F /* AppCoordinator.swift */; };
+		722276C123E01D4000D8E72F /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722276C023E01D4000D8E72F /* WelcomeViewController.swift */; };
+		722276C423E01DB100D8E72F /* PanModal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 722276C323E01DB100D8E72F /* PanModal.framework */; };
+		722276C523E01DB100D8E72F /* PanModal.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 722276C323E01DB100D8E72F /* PanModal.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		722276C823E01DB400D8E72F /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 722276C723E01DB400D8E72F /* SnapKit.framework */; };
+		722276C923E01DB400D8E72F /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 722276C723E01DB400D8E72F /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		722276CC23E1684F00D8E72F /* OAuthSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 722276CB23E1684E00D8E72F /* OAuthSwift.framework */; };
+		722276CD23E1684F00D8E72F /* OAuthSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 722276CB23E1684E00D8E72F /* OAuthSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,11 +42,26 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		722276C623E01DB100D8E72F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				722276C523E01DB100D8E72F /* PanModal.framework in Embed Frameworks */,
+				722276C923E01DB400D8E72F /* SnapKit.framework in Embed Frameworks */,
+				722276CD23E1684F00D8E72F /* OAuthSwift.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		7222768423E011D800D8E72F /* stravo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = stravo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7222768723E011D800D8E72F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7222768923E011D800D8E72F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		7222768B23E011D800D8E72F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7222769023E011E000D8E72F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7222769323E011E000D8E72F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7222769523E011E000D8E72F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -53,6 +74,10 @@
 		722276B923E0145C00D8E72F /* SplashCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashCoordinator.swift; sourceTree = "<group>"; };
 		722276BC23E0148200D8E72F /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		722276BE23E0173A00D8E72F /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		722276C023E01D4000D8E72F /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		722276C323E01DB100D8E72F /* PanModal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PanModal.framework; path = Carthage/Build/iOS/PanModal.framework; sourceTree = "<group>"; };
+		722276C723E01DB400D8E72F /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
+		722276CB23E1684E00D8E72F /* OAuthSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OAuthSwift.framework; path = Carthage/Build/iOS/OAuthSwift.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +85,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				722276C423E01DB100D8E72F /* PanModal.framework in Frameworks */,
+				722276C823E01DB400D8E72F /* SnapKit.framework in Frameworks */,
+				722276CC23E1684F00D8E72F /* OAuthSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,6 +115,7 @@
 				7222769D23E011E000D8E72F /* stravoTests */,
 				722276A823E011E000D8E72F /* stravoUITests */,
 				7222768523E011D800D8E72F /* Products */,
+				722276C223E01DB000D8E72F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -108,7 +137,6 @@
 				722276B723E0142800D8E72F /* splash */,
 				7222768723E011D800D8E72F /* AppDelegate.swift */,
 				7222768923E011D800D8E72F /* SceneDelegate.swift */,
-				7222768B23E011D800D8E72F /* ViewController.swift */,
 				7222769023E011E000D8E72F /* Assets.xcassets */,
 				7222769223E011E000D8E72F /* LaunchScreen.storyboard */,
 				7222769523E011E000D8E72F /* Info.plist */,
@@ -139,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				722276B923E0145C00D8E72F /* SplashCoordinator.swift */,
+				722276C023E01D4000D8E72F /* WelcomeViewController.swift */,
 			);
 			path = splash;
 			sourceTree = "<group>";
@@ -158,6 +187,16 @@
 			path = utilities;
 			sourceTree = "<group>";
 		};
+		722276C223E01DB000D8E72F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				722276CB23E1684E00D8E72F /* OAuthSwift.framework */,
+				722276C723E01DB400D8E72F /* SnapKit.framework */,
+				722276C323E01DB100D8E72F /* PanModal.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -168,6 +207,8 @@
 				7222768023E011D800D8E72F /* Sources */,
 				7222768123E011D800D8E72F /* Frameworks */,
 				7222768223E011D800D8E72F /* Resources */,
+				722276C623E01DB100D8E72F /* Embed Frameworks */,
+				722276CA23E01DF300D8E72F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -283,17 +324,40 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		722276CA23E01DF300D8E72F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/SnapKit.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/PanModal.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/OAuthSwift.framework",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		7222768023E011D800D8E72F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				722276BF23E0173A00D8E72F /* AppCoordinator.swift in Sources */,
-				7222768C23E011D800D8E72F /* ViewController.swift in Sources */,
 				722276BA23E0145C00D8E72F /* SplashCoordinator.swift in Sources */,
 				722276BD23E0148200D8E72F /* Coordinator.swift in Sources */,
 				7222768823E011D800D8E72F /* AppDelegate.swift in Sources */,
 				7222768A23E011D800D8E72F /* SceneDelegate.swift in Sources */,
+				722276C123E01D4000D8E72F /* WelcomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,6 +524,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UHG35942S7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = stravo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -478,6 +546,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UHG35942S7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = stravo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
