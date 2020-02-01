@@ -30,11 +30,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             guard let url = URLContexts.first?.url else {
                 return
             }
-            if (url.host == "oauth-callback") {
-                OAuthSwift.handle(url: url)
-            }
+        if url.host == "oauthhandler" {
+            OAuthSwift.handle(url: url)
+        }
     }
-
 
 }
 
