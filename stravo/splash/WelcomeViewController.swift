@@ -53,6 +53,16 @@ class WelcomeViewController: UIViewController {
     }
     
     @objc private func didSelectAuthorizeButton(_ sender: Any?) {
-        print("pressed")
+        StravaClient.shared.authenticate { result in
+            self.authorizeButton.backgroundColor = result ? UIColor.orange : UIColor.red
+            StravaClient.shared.makeRequest(StravaActivitiesRequest()) { result in
+                switch result {
+                case .success(let activities):
+                    print(activities)
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
     }
 }
