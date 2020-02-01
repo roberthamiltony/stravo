@@ -20,5 +20,5 @@ protocol APIClient {
     ///   - request: An implementation of API Request, to define the path and data type
     ///   - completion: A completion handler, called with the result: an object of the request's entity type, or an error detailing
     ///   what went wrong
-    func makeRequest<T: APIRequest>(_ request: T, completion: ((RequestResponse<T.entity>) -> Void))
+    func makeRequest<T: APIRequest>(_ request: T, completion: @escaping RequestResponse<T.entity>)
 }
