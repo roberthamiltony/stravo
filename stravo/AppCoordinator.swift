@@ -21,9 +21,17 @@ class AppCoordinator: Coordinator {
     
     override func start() {
         navigationController.navigationBar.prefersLargeTitles = true
+        navigationController.view.backgroundColor = UIColor.white
         if AppCoordinator.shouldShowSplash {
             let splash = SplashCoordinator(navigationController: navigationController)
+            splashCoordinator = splash
             splash.start()
         }
+    }
+}
+
+extension AppCoordinator: SplashCoordinatorDelegate {
+    func SplashCoordinatorDidComplete(_ coordinator: SplashCoordinator) {
+        
     }
 }
