@@ -16,8 +16,11 @@ import SnapKit
 class WelcomeViewController: UIViewController {
     private var descriptionLabel: UILabel!
     private var authorizeButton: UIButton!
+    
+    /// An implementaion of WelcomeViewControllerDelegate to handle updates
+    weak var delegate: WelcomeViewControllerDelegate?
+    
     override func viewDidLoad() {
-        view.backgroundColor = UIColor.white
         super.viewDidLoad()
         // TODO use a strings file
         title = "Welcome"
@@ -40,6 +43,7 @@ class WelcomeViewController: UIViewController {
     private func setupAuthorizeButton() {
         let button = UIButton()
         authorizeButton = button
+        button.layer.cornerRadius = 3
         view.addSubview(button)
         button.setTitle("Authorize", for: .normal)
         button.tintColor = UIColor.systemBlue
@@ -53,16 +57,22 @@ class WelcomeViewController: UIViewController {
     }
     
     @objc private func didSelectAuthorizeButton(_ sender: Any?) {
-        StravaClient.shared.authenticate { result in
-            self.authorizeButton.backgroundColor = result ? UIColor.orange : UIColor.red
-            StravaClient.shared.makeRequest(StravaActivitiesRequest()) { result in
-                switch result {
-                case .success(let activities):
-                    print(activities)
-                case .failure(let error):
-                    print(error)
-                }
-            }
-        }
+        print(delegate == nil)
+        self.delegate?.welcomeViewControllerDidComplete(self)
+//        StravaClient.shared.authenticate { result in
+//            if result {
+//                self.delegate?.welcomeViewControllerDidComplete(self)
+//            } else  {
+//                // TODO maybe show an error?
+//            }
+//        }
     }
+}
+
+/// A protocol to be implemented to receive updates from a WelcomeViewController instance.
+protocol WelcomeViewControllerDelegate: class {
+    
+    /// Called when the WelcomeViewController has completed its flow
+    /// - Parameter viewController: The WelcomeViewController instance which has completed its flow
+    func welcomeViewControllerDidComplete(_ viewController: WelcomeViewController)
 }

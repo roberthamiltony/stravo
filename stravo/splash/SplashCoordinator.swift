@@ -11,13 +11,33 @@ import Foundation
 /// The splash coordinator is responsible for progressing the user through the OOB flow, where the user will be
 /// prompted to provide permissions and authorizations.
 class SplashCoordinator: Coordinator {
+    
+    /// An implementation of SplashCoordinatorDelegate to receive updates from this instance.
+    weak var delegate: SplashCoordinatorDelegate?
+    
     override func start() {
-        navigationController.pushViewController(WelcomeViewController(), animated: false)
+        let welcomeVC = WelcomeViewController()
+        welcomeVC.delegate = self
+        navigationController.pushViewController(welcomeVC, animated: false)
+    }
+}
+
+extension SplashCoordinator: WelcomeViewControllerDelegate {
+    func welcomeViewControllerDidComplete(_ viewController: WelcomeViewController) {
+        let OOBVC = OOBFinisherViewController()
+        OOBVC.delegate = self
+        navigationController.pushViewController(OOBVC, animated: true)
+    }
+}
+
+extension SplashCoordinator: OOBFinisherViewControllerDelegate {
+    func OOBFinisherViewControllerDidComplete(_ viewController: OOBFinisherViewController) {
+        print("complete")
     }
 }
 
 /// A protocol to be implemented by classes requiring updates from a SplashCoordnator instance.
-protocol SplashCoordinatorDelegate {
+protocol SplashCoordinatorDelegate: class {
     
     /// A method to be implemented to receive callbacks from a SplashCoordinator instance when the OOB
     /// flow has been completed.
