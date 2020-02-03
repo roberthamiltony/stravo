@@ -27,10 +27,11 @@ class DashboardViewController: UIViewController {
     
     /// A view controller to provide more detailied information for the current activity
     var activityDetailer: ActivityDetailerViewController?
+    
     private var activityOverview: ActivityMapViewController!
     
     override func viewDidLoad() {
-        title = "Activity"
+        super.viewDidLoad()
         setupOverview()
         let detailer = ActivityDetailerViewController()
         activityDetailer = detailer
