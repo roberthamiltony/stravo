@@ -24,6 +24,7 @@ class WelcomeViewController: UIViewController {
         super.viewDidLoad()
         // TODO use a strings file
         title = "Welcome"
+        view.backgroundColor = .white
         setupDescriptionLabel()
         setupAuthorizeButton()
     }
@@ -57,15 +58,13 @@ class WelcomeViewController: UIViewController {
     }
     
     @objc private func didSelectAuthorizeButton(_ sender: Any?) {
-        print(delegate == nil)
-        self.delegate?.welcomeViewControllerDidComplete(self)
-//        StravaClient.shared.authenticate { result in
-//            if result {
-//                self.delegate?.welcomeViewControllerDidComplete(self)
-//            } else  {
-//                // TODO maybe show an error?
-//            }
-//        }
+        StravaClient.shared.authenticate { result in
+            if result {
+                self.delegate?.welcomeViewControllerDidComplete(self)
+            } else  {
+                // TODO maybe show an error?
+            }
+        }
     }
 }
 

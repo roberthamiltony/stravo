@@ -22,6 +22,8 @@ class OOBFinisherViewController: UIViewController {
         title = "Welcome"
         setupDescription()
         setupButton()
+        view.backgroundColor = .white
+        navigationItem.setHidesBackButton(true, animated: false)
     }
     
     private func setupDescription() {
