@@ -16,22 +16,30 @@ class AppCoordinator: Coordinator {
     /// A coordinator to handle the OOB flow.
     var splashCoordinator: SplashCoordinator?
     
-    // TODO store this in user defaults
+    /// A coordinator to handle the Dashboard flow
+    var dashboardCoordinator: DashboardCoordinator?
+    
+    // TODO store this in user defaults or get it from the strava authenticator
     private static var shouldShowSplash = true
     
     override func start() {
         navigationController.navigationBar.prefersLargeTitles = true
         navigationController.view.backgroundColor = UIColor.white
+        navigationController.interactivePopGestureRecognizer?.isEnabled = false
         if AppCoordinator.shouldShowSplash {
             let splash = SplashCoordinator(navigationController: navigationController)
             splashCoordinator = splash
+            splash.delegate = self
             splash.start()
         }
     }
 }
 
 extension AppCoordinator: SplashCoordinatorDelegate {
-    func SplashCoordinatorDidComplete(_ coordinator: SplashCoordinator) {
-        
+    func splashCoordinatorDidComplete(_ coordinator: SplashCoordinator) {
+        let dashboard = DashboardCoordinator(navigationController: navigationController)
+        dashboardCoordinator = dashboard
+        dashboard.start()
+        splashCoordinator = nil
     }
 }
