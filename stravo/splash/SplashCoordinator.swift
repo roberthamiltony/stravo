@@ -32,7 +32,7 @@ extension SplashCoordinator: WelcomeViewControllerDelegate {
 
 extension SplashCoordinator: OOBFinisherViewControllerDelegate {
     func OOBFinisherViewControllerDidComplete(_ viewController: OOBFinisherViewController) {
-        print("complete")
+        delegate?.splashCoordinatorDidComplete(self)
     }
 }
 
@@ -43,5 +43,5 @@ protocol SplashCoordinatorDelegate: class {
     /// flow has been completed.
     ///
     /// - Parameter coordinator: The SplashCoordinator instance which has completed it's flow.
-    func SplashCoordinatorDidComplete(_ coordinator: SplashCoordinator)
+    func splashCoordinatorDidComplete(_ coordinator: SplashCoordinator)
 }
