@@ -11,8 +11,13 @@ import Foundation
 
 /// A class through which Strava Activity instances can be requested and their availability queried.
 class DashboardViewModel {
-    private var activities: [StravaActivity] = []
+    
+    /// The list of available activities associated with this athlete, ordered by date recorded. This is not necessarily the total list of
+    /// activities associated with the athlete; more may be available and the list can be updated through requestActivities.
+    private (set) var activities: [StravaActivity] = []
     private let activitiesPerPage = 30
+    
+    /// A flag, indicating whether a request for more activities is currently awaiting response.
     private (set) var loading: Bool = false
     
     /// An implementation of DashboardViewModelDelgate to handle updates from this instance
@@ -20,7 +25,7 @@ class DashboardViewModel {
     
     
     /// The current number of activities which can be indexed. This is not necessarily the total number of activities associated with the
-    /// athlete, just the number currently associated with this instace. To request more, use requestActivities
+    /// athlete, just the number currently associated with this instace. To request more, use requestActivities.
     var currentActivityCount: Int {
         return activities.count
     }
@@ -37,10 +42,11 @@ class DashboardViewModel {
     
     
     /// Makes a call to the Strava API to load more or reload the current set of activities. The response will be communicated through
-    /// DashboardViewModelDelegate calls
+    /// DashboardViewModelDelegate calls. If a request is currently pending, this call will do nothing.
     /// - Parameter count: The number of activities which should now be loaded. By default, this is 30 - ideally custom values
     /// should be multiples of 30.
     func requestActivities(count: Int=30) {
+        guard !loading else { return }
         StravaClient.shared.makeRequest(StravaActivitiesRequest()) { result in
             switch result {
             case .success(let activities):
