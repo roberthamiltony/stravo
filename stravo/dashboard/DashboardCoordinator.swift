@@ -13,5 +13,6 @@ class DashboardCoordinator: Coordinator {
     override func start() {
         let dashboardVC = DashboardViewController()
         navigationController.setViewControllers([dashboardVC], animated: true)
+        dashboardVC.viewModel = DashboardViewModel()
     }
 }

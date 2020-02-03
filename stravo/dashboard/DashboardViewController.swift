@@ -17,26 +17,32 @@ import SnapKit
 class DashboardViewController: UIViewController {
     
     /// A view model to provide data for the dashboard view controller views
-    var viewModel: DashboardViewModel?
+    var viewModel: DashboardViewModel? {
+        didSet {
+            if let viewModel = viewModel {
+                bind(viewModel)
+            }
+        }
+    }
     
     /// A view controller to provide more detailied information for the current activity
     var activityDetailer: ActivityDetailerViewController?
-    
-    private var pageController: UIPageViewController!
+    private var activityOverview: ActivityMapViewController!
     
     override func viewDidLoad() {
         title = "Activity"
-        setupPageController()
+        setupOverview()
         let detailer = ActivityDetailerViewController()
         activityDetailer = detailer
+        applyActivity(forIndex: 0)
     }
     
-    private func setupPageController() {
-        let pager = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
-        pageController = pager
-        addChild(pager)
-        view.addSubview(pager.view)
-        pager.view.snp.makeConstraints { make in
+    private func setupOverview() {
+        let overview = ActivityMapViewController()
+        activityOverview = overview
+        addChild(overview)
+        view.addSubview(overview.view)
+        overview.view.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
     }
@@ -45,8 +51,35 @@ class DashboardViewController: UIViewController {
         let detailer = ActivityDetailerViewController()
         activityDetailer = detailer
         addChild(detailer)
-        
     }
     
+    private func bind(_ viewModel: DashboardViewModel) {
+        viewModel.delegate = self
+        if viewModel.currentActivityCount == 0 {
+            viewModel.requestActivities()
+            // setup loading indicator maybe? or should the default map be a loading indicator
+        }
+    }
     
+    private func applyActivity(forIndex index: Int) {
+        guard let viewModel = viewModel, index >= 0 && index < viewModel.currentActivityCount else {
+            return
+        }
+        let activity = viewModel.activity(index: index)
+        activityOverview.activity = activity
+        // activityDetailer?.stravaActivity = activity
+    }
+}
+
+extension DashboardViewController: DashboardViewModelDelegate {
+    func viewModelDidLoadActivities(_ viewModel: DashboardViewModel) {
+        if activityOverview.activity == nil, viewModel.currentActivityCount > 0 {
+            applyActivity(forIndex: 0)
+        }
+    }
+    
+    func viewModelLoadActivitiesDidFail(_ viewModel: DashboardViewModel, error: Error) {
+        // hide loading indicator
+        // show error popup
+    }
 }
