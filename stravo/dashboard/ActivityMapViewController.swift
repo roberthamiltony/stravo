@@ -17,10 +17,17 @@ class ActivityMapViewController: UIViewController {
     /// The activity the map will detail
     var activity: StravaActivity? {
         didSet {
-            // update map
+            if let activity = activity, let lat = activity.startLatitude, let long = activity.startLongitude {
+                map.region = MKCoordinateRegion(
+                    center: CLLocationCoordinate2D(latitude: lat, longitude: long),
+                    span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+                )
+            }
         }
     }
+    
     private var map: MKMapView!
+    
     override func viewDidLoad() {
         setupMap()
     }
@@ -29,8 +36,6 @@ class ActivityMapViewController: UIViewController {
         let mapView = MKMapView()
         map = mapView
         view.addSubview(mapView)
-        mapView.centerCoordinate = CLLocationCoordinate2D(latitude: -1.0, longitude: 50.0
-        )
         mapView.snp.makeConstraints { make in
             make.top.left.right.bottom.equalToSuperview()
         }
