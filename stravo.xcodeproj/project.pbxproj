@@ -12,6 +12,7 @@
 		72012AF523E70C90002D4A99 /* ActivityMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72012AF423E70C90002D4A99 /* ActivityMapViewController.swift */; };
 		72012AF723E70D0E002D4A99 /* ActivityDetailerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72012AF623E70D0E002D4A99 /* ActivityDetailerViewController.swift */; };
 		72012AF923E71189002D4A99 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72012AF823E71189002D4A99 /* DashboardViewModel.swift */; };
+		720B39D523E9F22800488A67 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 720B39D423E9F22800488A67 /* Environment.swift */; };
 		720F1FDF23E553D80039F445 /* StravaActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 720F1FDE23E553D80039F445 /* StravaActivity.swift */; };
 		720F1FE223E5711F0039F445 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 720F1FE123E5711F0039F445 /* APIRequest.swift */; };
 		720F1FE423E576180039F445 /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 720F1FE323E576180039F445 /* Authenticator.swift */; };
@@ -76,6 +77,8 @@
 		72012AF423E70C90002D4A99 /* ActivityMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityMapViewController.swift; sourceTree = "<group>"; };
 		72012AF623E70D0E002D4A99 /* ActivityDetailerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailerViewController.swift; sourceTree = "<group>"; };
 		72012AF823E71189002D4A99 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
+		720B39D423E9F22800488A67 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		720B39D723E9F38A00488A67 /* release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = release.xcconfig; sourceTree = "<group>"; };
 		720F1FDE23E553D80039F445 /* StravaActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StravaActivity.swift; sourceTree = "<group>"; };
 		720F1FE023E56CAF0039F445 /* stravo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = stravo.entitlements; sourceTree = "<group>"; };
 		720F1FE123E5711F0039F445 /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
@@ -133,6 +136,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		720B39D623E9F36300488A67 /* configs */ = {
+			isa = PBXGroup;
+			children = (
+				720B39D723E9F38A00488A67 /* release.xcconfig */,
+			);
+			path = configs;
+			sourceTree = "<group>";
+		};
 		720F1FDD23E553BF0039F445 /* entites */ = {
 			isa = PBXGroup;
 			children = (
@@ -165,6 +176,7 @@
 		7222768623E011D800D8E72F /* stravo */ = {
 			isa = PBXGroup;
 			children = (
+				720B39D623E9F36300488A67 /* configs */,
 				720F1FE023E56CAF0039F445 /* stravo.entitlements */,
 				722276D223E4194600D8E72F /* strava */,
 				722276BB23E0146700D8E72F /* utilities */,
@@ -227,6 +239,7 @@
 				720F1FE123E5711F0039F445 /* APIRequest.swift */,
 				720F1FE323E576180039F445 /* Authenticator.swift */,
 				720F1FE523E5771C0039F445 /* APIClient.swift */,
+				720B39D423E9F22800488A67 /* Environment.swift */,
 			);
 			path = utilities;
 			sourceTree = "<group>";
@@ -421,6 +434,7 @@
 				720F1FE423E576180039F445 /* Authenticator.swift in Sources */,
 				7222768A23E011D800D8E72F /* SceneDelegate.swift in Sources */,
 				720F1FDF23E553D80039F445 /* StravaActivity.swift in Sources */,
+				720B39D523E9F22800488A67 /* Environment.swift in Sources */,
 				720F1FE223E5711F0039F445 /* APIRequest.swift in Sources */,
 				722276C123E01D4000D8E72F /* WelcomeViewController.swift in Sources */,
 				72012AEB23E6F219002D4A99 /* OOBFinisherViewController.swift in Sources */,
@@ -586,6 +600,7 @@
 		};
 		722276AF23E011E000D8E72F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 720B39D723E9F38A00488A67 /* release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = stravo/stravo.entitlements;
@@ -609,6 +624,7 @@
 		};
 		722276B023E011E000D8E72F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 720B39D723E9F38A00488A67 /* release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = stravo/stravo.entitlements;
@@ -632,6 +648,7 @@
 		};
 		722276B223E011E000D8E72F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 720B39D723E9F38A00488A67 /* release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -654,6 +671,7 @@
 		};
 		722276B323E011E000D8E72F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 720B39D723E9F38A00488A67 /* release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -676,6 +694,7 @@
 		};
 		722276B523E011E000D8E72F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 720B39D723E9F38A00488A67 /* release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -696,6 +715,7 @@
 		};
 		722276B623E011E000D8E72F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 720B39D723E9F38A00488A67 /* release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

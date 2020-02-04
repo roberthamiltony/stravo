@@ -13,7 +13,8 @@ import OAuthSwift
 class StravaClient: Authenticating, APIClient {
     /// A shared instance
     static let shared = StravaClient()
-    let endpoint = "https://www.strava.com/api/v3/"
+    private static let baseURL = Environment.stravaBaseURL
+    let endpoint = "\(StravaClient.baseURL)/api/v3/"
     let callbackURLPath = "strava"
     
     private let authenticator: OAuth2Swift
@@ -21,9 +22,12 @@ class StravaClient: Authenticating, APIClient {
     
     internal init() {
         authenticator = OAuth2Swift(
-            // credentials
+            consumerKey:    Environment.stravaKey,
+            consumerSecret: Environment.stravaSecret,
+            authorizeUrl:   "\(StravaClient.baseURL)/oauth/authorize",
+            accessTokenUrl: "\(StravaClient.baseURL)/oauth/token",
+            responseType:   "code"
         )
-        
     }
     
     private var authHeader: [String: String] {
@@ -48,7 +52,6 @@ class StravaClient: Authenticating, APIClient {
                     completion(true)
                 }
             case .failure(_):
-                print("failed")
                 self.authenticated = false
                 if let completion = completion {
                     completion(false)
