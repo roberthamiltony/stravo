@@ -1,0 +1,13 @@
+//
+//  releaseConfig.xcconfig
+//  stravo
+//
+//  Created by Robert Hamilton on 04/02/2020.
+//  Copyright © 2020 Robert Hamilton. All rights reserved.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+STRAVA_KEY = ""
+STRAVA_SECRET = ""
