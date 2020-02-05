@@ -19,7 +19,6 @@ class AppCoordinator: Coordinator {
     /// A coordinator to handle the Dashboard flow
     var dashboardCoordinator: DashboardCoordinator?
     
-    // TODO store this in user defaults or get it from the strava authenticator
     private static var shouldShowSplash: Bool {
         !StravaClient.shared.authenticated
     }

@@ -42,7 +42,7 @@ class ActivityDetailerViewController: UIViewController {
     }
     
     private func setupShadow() {
-        // TODO actually set up a shadow
+        // TODO 6: actually set up a shadow
         view.layer.borderWidth = 1
         view.layer.borderColor = UIColor.lightGray.cgColor
     }
@@ -96,7 +96,7 @@ class ActivityDetailerViewController: UIViewController {
     }
     
     private func setupBody() {
-        // TODO what should go in her
+        // TODO 7: add content
         let body = UIView()
         bodyView = body
         view.addSubview(body)
@@ -119,7 +119,7 @@ class ActivityDetailerViewController: UIViewController {
             elevationLabel.text = "🏔"
         }
         if let averageSpeed = stravaActivity?.averageSpeed {
-            // TODO this doesn't seem right
+            // TODO 8: this doesn't seem right
             averageSpeedLabel.text = String(format: "🏎 %.1fkph", averageSpeed)
         } else {
             averageSpeedLabel.text = "🏎"
@@ -146,7 +146,7 @@ extension ActivityDetailerViewController: PanModalPresentable {
         UIColor.clear
     }
     
-    // TODO have a corner radius and shadows
+    // TODO 6: have a corner radius and shadows
     var cornerRadius: CGFloat {
         0
     }

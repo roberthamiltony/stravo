@@ -9,7 +9,7 @@
 import XCTest
 @testable import stravo
 
-// TODO add mock server to test response handling
+// TODO 13: add mock server to test response handling
 class StravaClientTests: XCTestCase {
 
     override func setUp() {

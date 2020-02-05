@@ -22,8 +22,8 @@ class WelcomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // TODO use a strings file
-        // TODO when reusing this flow for logging in a different user, use a different string
+        // TODO 10: use a strings file
+        // TODO 11: when reusing this flow for logging in a different user, use a different string
         title = "👋"
         view.backgroundColor = .white
         setupDescriptionLabel()
@@ -34,7 +34,7 @@ class WelcomeViewController: UIViewController {
         let description = UILabel()
         descriptionLabel = description
         view.addSubview(description)
-        // TODO when reusing this flow for logging in a different user, use a different string
+        // TODO 11: when reusing this flow for logging in a different user, use a different string
         description.text = "Welcome to stravo!\n\nFirst of all, you'll need to log into strava."
         description.numberOfLines = 0
         description.snp.makeConstraints { make in
@@ -64,7 +64,7 @@ class WelcomeViewController: UIViewController {
             if result {
                 self.delegate?.welcomeViewControllerDidComplete(self)
             } else  {
-                // TODO maybe show an error?
+                // TODO 12: maybe show an error?
             }
         }
     }

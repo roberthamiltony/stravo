@@ -41,7 +41,7 @@ class StravaClient: Authenticating, APIClient {
     }
     
     func authenticate(completion: ((Bool) -> Void)? = nil) {
-        // TODO scope, state and parameters should not be hard-coded. There should be a Strava
+        // TODO 2: scope, state and parameters should not be hard-coded. There should be a Strava
         // API helpers or config file for this.
         authenticator.authorize(
             withCallbackURL: callbackURL,
@@ -53,7 +53,7 @@ class StravaClient: Authenticating, APIClient {
             ]
         ) { result in
             switch result {
-            case .success(let credential, let response, let parameters):
+            case .success(let credential, _, _):
                 self.authenticated = true
                 KeychainHelper.stravaAccessToken = credential.oauthToken
                 KeychainHelper.stravaRefreshToken = credential.oauthRefreshToken
@@ -87,7 +87,7 @@ class StravaClient: Authenticating, APIClient {
                     completion(.failure(error))
                 }
             case .failure(let error):
-                // TODO if this fails because the app is no longer authorized, the app should
+                // TODO 3: if this fails because the app is no longer authorized, the app should
                 // re-show the OOB log in flow
                 completion(.failure(error))
             }

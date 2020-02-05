@@ -9,7 +9,7 @@
 import Foundation
 
 /// A struct to represent Strava Activity objects
-/// TODO get the rest of the values
+/// TODO 1: get the rest of the values
 struct StravaActivity: Codable, Equatable {
     var resourceState: Int?
     // let athlete: Athlete
@@ -20,11 +20,11 @@ struct StravaActivity: Codable, Equatable {
     var totalElevation: Double?
     // let type: ActivityType
     var id: Int?
-    // TODO use Date or something like that
+    // TODO 1: use Date or something like that
     var startDate: String?
-    // TODO use Date or something like that
+    // TODO 1: use Date or something like that
     var startDateLocal: String?
-    // TODO use Timezone or something like that
+    // TODO 1: use Timezone or something like that
     var timezone: String?
     // let startLL: LatLong
     // let endLL: LatLong

@@ -60,7 +60,7 @@ class DashboardViewController: UIViewController {
     private func setupShowDetailerButton() {
         let button = UIButton()
         showDetailerButton = button
-        // TODO have a nicer button than this
+        // TODO 4: have a nicer button than this
         button.setTitle("📊", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 40)
         button.addTarget(self, action: #selector(didSelectShowDetails(_:)), for: .touchUpInside)
@@ -76,7 +76,6 @@ class DashboardViewController: UIViewController {
         viewModel.delegate = self
         if viewModel.currentActivityCount == 0 {
             viewModel.requestActivities()
-            // setup loading indicator maybe? or should the default map be a loading indicator
         }
     }
     
@@ -110,7 +109,7 @@ extension DashboardViewController: DashboardViewModelDelegate {
     }
     
     func viewModelLoadActivitiesDidFail(_ viewModel: DashboardViewModel, error: Error) {
-        // TODO show error popup
+        // TODO 5: show error popup
     }
 }
 
