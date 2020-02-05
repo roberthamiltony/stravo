@@ -8,11 +8,14 @@
 
 import Foundation
 import UIKit
+import PanModal
 
 
 /// A View Controller intended to display details of a Strava Activity
 class ActivityDetailerViewController: UIViewController {
     private var headerView: UIView!
+    private var titleLabel: UILabel!
+    private var subtitleLabel: UILabel!
     private var distanceLabel: UILabel!
     private var elevationLabel: UILabel!
     private var averageSpeedLabel: UILabel!
@@ -29,6 +32,7 @@ class ActivityDetailerViewController: UIViewController {
         setupHeader()
         setupBody()
         reloadData()
+        view.backgroundColor = .white
     }
     
     private func setupHeader() {
@@ -38,24 +42,44 @@ class ActivityDetailerViewController: UIViewController {
         header.snp.makeConstraints { make in
             make.top.left.right.equalToSuperview()
         }
+        setupHeaderLabels()
     }
     
     private func setupHeaderLabels() {
+        let title = UILabel()
         let distance = UILabel()
         let elevation = UILabel()
         let speed = UILabel()
+        titleLabel = title
         distanceLabel = distance
         elevationLabel = elevation
         averageSpeedLabel = speed
+        title.font = UIFont.boldSystemFont(ofSize: 30)
         let labelStack = UIStackView()
-        view.addSubview(labelStack)
+        labelStack.axis = .vertical
+        labelStack.alignment = .leading
+        labelStack.distribution = .fillEqually
+        labelStack.spacing = 10.0
+        headerView.addSubview(labelStack)
+        let numbersLabelStack = UIStackView()
         [distance, elevation, speed].forEach {
+            $0.textAlignment = .center
+            numbersLabelStack.addArrangedSubview($0)
+        }
+        numbersLabelStack.distribution = .fillEqually
+        numbersLabelStack.alignment = .center
+        numbersLabelStack.axis = .horizontal
+        [title, numbersLabelStack].forEach {
             labelStack.addArrangedSubview($0)
         }
-        labelStack.alignment = .center
-        labelStack.axis = .horizontal
         labelStack.snp.makeConstraints { make in
-            make.top.left.right.equalToSuperview()
+            make.top.equalToSuperview().inset(16)
+            make.left.right.equalToSuperview().inset(16)
+            make.bottom.equalToSuperview()
+        }
+
+        numbersLabelStack.snp.makeConstraints { make in
+            make.left.right.equalToSuperview()
         }
     }
     
@@ -71,8 +95,38 @@ class ActivityDetailerViewController: UIViewController {
     }
     
     private func reloadData() {
-        distanceLabel.text = stravaActivity?.distance?.description ?? ""
-        elevationLabel.text = stravaActivity?.totalElevation?.description ?? ""
-        averageSpeedLabel.text = stravaActivity?.averageSpeed?.description ?? ""
+        titleLabel.text = stravaActivity?.name ?? " "
+        if let distance = stravaActivity?.distance {
+            distanceLabel.text = String(format: "🗺 %.1fkm", distance/1000)
+        } else {
+            distanceLabel.text = "🗺"
+        }
+        if let elevation = stravaActivity?.totalElevation {
+            elevationLabel.text = String(format: "🏔 %.1fm", elevation)
+        } else {
+            elevationLabel.text = "🏔"
+        }
+        if let averageSpeed = stravaActivity?.averageSpeed {
+            // TODO this doesn't seem right
+            averageSpeedLabel.text = String(format: "🏎 %.1fkph", averageSpeed)
+        } else {
+            averageSpeedLabel.text = "🏎"
+        }
+    }
+}
+
+extension ActivityDetailerViewController: PanModalPresentable {
+    var panScrollable: UIScrollView? {
+        return nil
+    }
+    
+    var shortFormHeight: PanModalHeight {
+        view.layoutIfNeeded()
+        return .contentHeight(headerView.frame.height + additionalSafeAreaInsets.bottom)
+    }
+
+    var longFormHeight: PanModalHeight {
+        view.layoutIfNeeded()
+        return .maxHeightWithTopInset(40)
     }
 }

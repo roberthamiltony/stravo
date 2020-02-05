@@ -25,16 +25,15 @@ class DashboardViewController: UIViewController {
         }
     }
     
-    /// A view controller to provide more detailied information for the current activity
-    var activityDetailer: ActivityDetailerViewController?
+    private var activityDetailer: ActivityDetailerViewController!
     
     private var activityOverview: ActivityMapViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupOverview()
-        let detailer = ActivityDetailerViewController()
-        activityDetailer = detailer
+        setupDetailer()
+        presentPanModal(activityDetailer)
         applyActivity(forIndex: 0)
     }
     
@@ -51,7 +50,9 @@ class DashboardViewController: UIViewController {
     private func setupDetailer() {
         let detailer = ActivityDetailerViewController()
         activityDetailer = detailer
-        addChild(detailer)
+        if let insets = navigationController?.view.safeAreaInsets {
+            detailer.additionalSafeAreaInsets = insets
+        }
     }
     
     private func bind(_ viewModel: DashboardViewModel) {
@@ -68,7 +69,7 @@ class DashboardViewController: UIViewController {
         }
         let activity = viewModel.activity(index: index)
         activityOverview.activity = activity
-        // activityDetailer?.stravaActivity = activity
+        activityDetailer?.stravaActivity = activity
     }
 }
 
