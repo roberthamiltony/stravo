@@ -16,6 +16,7 @@ class DashboardViewModel {
     /// activities associated with the athlete; more may be available and the list can be updated through requestActivities.
     private (set) var activities: [StravaActivity] = []
     private let activitiesPerPage = 30
+    private let stravaClient: StravaClient
     
     /// A flag, indicating whether a request for more activities is currently awaiting response.
     private (set) var loading: Bool = false
@@ -23,13 +24,18 @@ class DashboardViewModel {
     /// An implementation of DashboardViewModelDelgate to handle updates from this instance
     weak var delegate: DashboardViewModelDelegate?
     
-    
     /// The current number of activities which can be indexed. This is not necessarily the total number of activities associated with the
     /// athlete, just the number currently associated with this instace. To request more, use requestActivities.
     var currentActivityCount: Int {
         return activities.count
     }
     
+    /// Initializes an instance of DashboardViewModel, optionally with a StravaClient with which calls will be made. If no client is
+    /// provided, the default shared instance will be used.
+    /// - Parameter client: A StravaClient instance to make API calls wil
+    init(client: StravaClient = StravaClient.shared) {
+        stravaClient = client
+    }
     
     /// Returns a Strava Activity by index
     /// - Parameter index: The index of the strava activity to return
@@ -40,14 +46,13 @@ class DashboardViewModel {
         return nil
     }
     
-    
     /// Makes a call to the Strava API to load more or reload the current set of activities. The response will be communicated through
     /// DashboardViewModelDelegate calls. If a request is currently pending, this call will do nothing.
     /// - Parameter count: The number of activities which should now be loaded. By default, this is 30 - ideally custom values
     /// should be multiples of 30.
     func requestActivities(count: Int=30) {
         guard !loading else { return }
-        StravaClient.shared.makeRequest(StravaActivitiesRequest()) { result in
+        stravaClient.makeRequest(StravaActivitiesRequest()) { result in
             switch result {
             case .success(let activities):
                 self.activities = activities

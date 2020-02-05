@@ -10,7 +10,7 @@ import Foundation
 
 /// A struct to represent Strava Activity objects
 /// TODO get the rest of the values
-struct StravaActivity: Codable {
+struct StravaActivity: Codable, Equatable {
     var resourceState: Int?
     // let athlete: Athlete
     var name: String?
