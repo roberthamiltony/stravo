@@ -76,7 +76,23 @@ enum KeychainHelper {
             )
             return nil
         }
-        
+    }
+    
+    private static func deleteValue(tag: Data) {
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassKey,
+            kSecAttrApplicationTag as String: tag
+        ]
+        let status = SecItemDelete(query as CFDictionary)
+        switch status {
+        case errSecSuccess:
+            print("Deleted item from keychain")
+        default:
+            print(
+                "Failed to delete from keychain: " +
+                SecCopyErrorMessageString(status, nil).debugDescription
+            )
+        }
     }
     
     // Force unwrap as StaticString data encoding can't fail
@@ -92,7 +108,9 @@ enum KeychainHelper {
             return nil
         }
         set {
-            if let data = newValue?.data(using: .utf8) {
+            if newValue == nil {
+                deleteValue(tag: stravaAccessTokenKey)
+            } else if let data = newValue?.data(using: .utf8) {
                 setValue(tag: stravaAccessTokenKey, value: data)
             } else {
                 print("Failed to encode new strava access token")
@@ -109,7 +127,9 @@ enum KeychainHelper {
             return nil
         }
         set {
-            if let data = newValue?.data(using: .utf8) {
+            if newValue == nil {
+                deleteValue(tag: stravaRefreshTokenKey)
+            } else if let data = newValue?.data(using: .utf8) {
                 setValue(tag: stravaRefreshTokenKey, value: data)
             } else {
                 print("Failed to encode new strava refresh token")
