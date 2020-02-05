@@ -24,6 +24,9 @@ class AppCoordinator: Coordinator {
     
     override func start() {
         navigationController.navigationBar.prefersLargeTitles = true
+        navigationController.navigationBar.largeTitleTextAttributes = [
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 100)
+        ]
         navigationController.view.backgroundColor = UIColor.white
         navigationController.interactivePopGestureRecognizer?.isEnabled = false
         if AppCoordinator.shouldShowSplash {

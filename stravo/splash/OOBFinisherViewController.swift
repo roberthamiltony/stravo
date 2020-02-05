@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 
-/// A view controller to be presented as the final page in an OOB flow
+/// A view controller to be presented as the final page in an OOB flow.
 class OOBFinisherViewController: UIViewController {
     private var descriptionLabel: UILabel!
     private var continueButton: UIButton!
@@ -19,7 +19,7 @@ class OOBFinisherViewController: UIViewController {
     weak var delegate: OOBFinisherViewControllerDelegate?
     
     override func viewDidLoad() {
-        title = "Welcome"
+        title = "👍"
         setupDescription()
         setupButton()
         view.backgroundColor = .white

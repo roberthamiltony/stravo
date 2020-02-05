@@ -23,7 +23,8 @@ class WelcomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // TODO use a strings file
-        title = "Welcome"
+        // TODO when reusing this flow for logging in a different user, use a different string
+        title = "👋"
         view.backgroundColor = .white
         setupDescriptionLabel()
         setupAuthorizeButton()
@@ -33,7 +34,8 @@ class WelcomeViewController: UIViewController {
         let description = UILabel()
         descriptionLabel = description
         view.addSubview(description)
-        description.text = "Welcome to stravo!\n\nFirst of all, we'll need to get some permissions."
+        // TODO when reusing this flow for logging in a different user, use a different string
+        description.text = "Welcome to stravo!\n\nFirst of all, you'll need to log into strava."
         description.numberOfLines = 0
         description.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(24)
@@ -46,7 +48,7 @@ class WelcomeViewController: UIViewController {
         authorizeButton = button
         button.layer.cornerRadius = 3
         view.addSubview(button)
-        button.setTitle("Authorize", for: .normal)
+        button.setTitle("Log in with Strava", for: .normal)
         button.tintColor = UIColor.systemBlue
         button.backgroundColor = UIColor.systemBlue
         button.addTarget(self, action: #selector(didSelectAuthorizeButton(_:)), for: .touchUpInside)
