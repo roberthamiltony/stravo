@@ -22,17 +22,29 @@ class ActivityDetailerViewController: UIViewController {
     
     private var bodyView: UIView!
     
+    /// A delegate to handle updates from this instance
+    weak var delegate: ActivityDetailerViewControllerDelegate?
+    
     /// The StravaActivity for which this instance is displaying data.
     var stravaActivity: StravaActivity? {
         didSet {
             reloadData()
         }
     }
+    
     override func viewDidLoad() {
+        super.viewDidLoad()
+        setupShadow()
         setupHeader()
         setupBody()
         reloadData()
         view.backgroundColor = .white
+    }
+    
+    private func setupShadow() {
+        // TODO actually set up a shadow
+        view.layer.borderWidth = 1
+        view.layer.borderColor = UIColor.lightGray.cgColor
     }
     
     private func setupHeader() {
@@ -129,4 +141,25 @@ extension ActivityDetailerViewController: PanModalPresentable {
         view.layoutIfNeeded()
         return .maxHeightWithTopInset(40)
     }
+    
+    var panModalBackgroundColor: UIColor {
+        UIColor.clear
+    }
+    
+    // TODO have a corner radius and shadows
+    var cornerRadius: CGFloat {
+        0
+    }
+    
+    func panModalDidDismiss() {
+        delegate?.ActivityDetailerWillBeDismissed(self)
+    }
+}
+
+/// A protocol to be implemented to receive updates from ActivityDetailerViewController instnaces
+protocol ActivityDetailerViewControllerDelegate: class {
+    
+    /// Called when the view controller will be dismissed from a pan modal presentation
+    /// - Parameter viewController: The view controller being dismissed
+    func ActivityDetailerWillBeDismissed(_ viewController: ActivityDetailerViewController)
 }

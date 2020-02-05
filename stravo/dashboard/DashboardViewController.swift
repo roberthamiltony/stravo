@@ -26,14 +26,15 @@ class DashboardViewController: UIViewController {
     }
     
     private var activityDetailer: ActivityDetailerViewController!
-    
     private var activityOverview: ActivityMapViewController!
+    private var showDetailerButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupOverview()
         setupDetailer()
-        presentPanModal(activityDetailer)
+        setupShowDetailerButton()
+        didSelectShowDetails(nil)
         applyActivity(forIndex: 0)
     }
     
@@ -50,8 +51,24 @@ class DashboardViewController: UIViewController {
     private func setupDetailer() {
         let detailer = ActivityDetailerViewController()
         activityDetailer = detailer
+        detailer.delegate = self
         if let insets = navigationController?.view.safeAreaInsets {
             detailer.additionalSafeAreaInsets = insets
+        }
+    }
+    
+    private func setupShowDetailerButton() {
+        let button = UIButton()
+        showDetailerButton = button
+        // TODO have a nicer button than this
+        button.setTitle("📊", for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 40)
+        button.addTarget(self, action: #selector(didSelectShowDetails(_:)), for: .touchUpInside)
+        view.addSubview(button)
+        button.snp.makeConstraints { make in
+            make.width.height.equalTo(64)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(16)
+            make.left.equalToSuperview().inset(16)
         }
     }
     
@@ -71,6 +88,18 @@ class DashboardViewController: UIViewController {
         activityOverview.activity = activity
         activityDetailer?.stravaActivity = activity
     }
+    
+    @objc private func didSelectShowDetails(_ sender: Any?) {
+        if !isPanModalPresented {
+            UIView.animate(withDuration: 0.2, animations: ({
+                self.showDetailerButton.alpha = 0
+                
+            }), completion: { _ in
+                self.showDetailerButton.isHidden = true
+            })
+            presentPanModal(activityDetailer)
+        }
+    }
 }
 
 extension DashboardViewController: DashboardViewModelDelegate {
@@ -81,7 +110,15 @@ extension DashboardViewController: DashboardViewModelDelegate {
     }
     
     func viewModelLoadActivitiesDidFail(_ viewModel: DashboardViewModel, error: Error) {
-        // hide loading indicator
-        // show error popup
+        // TODO show error popup
+    }
+}
+
+extension DashboardViewController: ActivityDetailerViewControllerDelegate {
+    func ActivityDetailerWillBeDismissed(_ viewController: ActivityDetailerViewController) {
+        UIView.animate(withDuration: 0.2) {
+            self.showDetailerButton.isHidden = false
+            self.showDetailerButton.alpha = 1
+        }
     }
 }
