@@ -20,7 +20,9 @@ class AppCoordinator: Coordinator {
     var dashboardCoordinator: DashboardCoordinator?
     
     // TODO store this in user defaults or get it from the strava authenticator
-    private static var shouldShowSplash = true
+    private static var shouldShowSplash: Bool {
+        !StravaClient.shared.authenticated
+    }
     
     override func start() {
         navigationController.navigationBar.prefersLargeTitles = true
@@ -30,19 +32,29 @@ class AppCoordinator: Coordinator {
         navigationController.view.backgroundColor = UIColor.white
         navigationController.interactivePopGestureRecognizer?.isEnabled = false
         if AppCoordinator.shouldShowSplash {
-            let splash = SplashCoordinator(navigationController: navigationController)
-            splashCoordinator = splash
-            splash.delegate = self
-            splash.start()
+            showOOB()
+        } else {
+            showDashboard()
         }
+    }
+    
+    private func showOOB() {
+        let splash = SplashCoordinator(navigationController: navigationController)
+        splashCoordinator = splash
+        splash.delegate = self
+        splash.start()
+    }
+    
+    private func showDashboard() {
+        let dashboard = DashboardCoordinator(navigationController: navigationController)
+        dashboardCoordinator = dashboard
+        dashboard.start()
+        splashCoordinator = nil
     }
 }
 
 extension AppCoordinator: SplashCoordinatorDelegate {
     func splashCoordinatorDidComplete(_ coordinator: SplashCoordinator) {
-        let dashboard = DashboardCoordinator(navigationController: navigationController)
-        dashboardCoordinator = dashboard
-        dashboard.start()
-        splashCoordinator = nil
+        showDashboard()
     }
 }
