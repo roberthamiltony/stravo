@@ -30,7 +30,7 @@ class AppCoordinator: Coordinator {
         ]
         navigationController.view.backgroundColor = UIColor.white
         navigationController.interactivePopGestureRecognizer?.isEnabled = false
-        if AppCoordinator.shouldShowSplash {
+        if AppCoordinator.shouldShowSplash && false {
             showOOB()
         } else {
             showDashboard()

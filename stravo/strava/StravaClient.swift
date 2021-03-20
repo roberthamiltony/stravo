@@ -37,7 +37,7 @@ class StravaClient: Authenticating, APIClient {
     }
     
     private var authHeader: [String: String] {
-        return ["Authorization":"Bearer \(authenticator.client.credential.oauthToken)"]
+        return ["Authorization": "Bearer \(authenticator.client.credential.oauthToken)"]
     }
     
     func authenticate(completion: ((Bool) -> Void)? = nil) {

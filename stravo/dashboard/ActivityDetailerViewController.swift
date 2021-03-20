@@ -8,12 +8,38 @@
 
 import Foundation
 import UIKit
-import PanModal
 
+class ActivityDetailerViewController: BottomSheetViewController {
+    let detail = ActivityDetailerView()
+    override var contentSize: SnapPoint {
+        SnapPoint(constant:
+            detail.frame.height +
+            view.safeAreaInsets.bottom +
+            CGFloat(sheet.insetToContent)
+        )
+    }
+    
+    var headerSize: SnapPoint {
+        SnapPoint(constant:
+            detail.headerView.frame.height +
+            view.safeAreaInsets.bottom +
+            CGFloat(sheet.insetToContent)
+        )
+    }
+    
+    override var snapPoints: [SnapPoint] { [headerSize, hidden] }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        sheet.contentView.addSubview(detail)
+        detail.snp.makeConstraints { make in make.edges.equalToSuperview() }
+        stretchable = true
+    }
+}
 
 /// A View Controller intended to display details of a Strava Activity
-class ActivityDetailerViewController: UIViewController {
-    private var headerView: UIView!
+class ActivityDetailerView: UIView {
+    var headerView: UIView!
     private var titleLabel: UILabel!
     private var subtitleLabel: UILabel!
     private var distanceLabel: UILabel!
@@ -22,9 +48,6 @@ class ActivityDetailerViewController: UIViewController {
     
     private var bodyView: UIView!
     
-    /// A delegate to handle updates from this instance
-    weak var delegate: ActivityDetailerViewControllerDelegate?
-    
     /// The StravaActivity for which this instance is displaying data.
     var stravaActivity: StravaActivity? {
         didSet {
@@ -32,25 +55,29 @@ class ActivityDetailerViewController: UIViewController {
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    init() {
+        super.init(frame: .zero)
         setupShadow()
         setupHeader()
         setupBody()
         reloadData()
-        view.backgroundColor = .white
+        backgroundColor = .white
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     private func setupShadow() {
         // TODO 6: actually set up a shadow
-        view.layer.borderWidth = 1
-        view.layer.borderColor = UIColor.lightGray.cgColor
+        layer.borderWidth = 1
+        layer.borderColor = UIColor.lightGray.cgColor
     }
     
     private func setupHeader() {
         let header = UIView()
         self.headerView = header
-        view.addSubview(header)
+        addSubview(header)
         header.snp.makeConstraints { make in
             make.top.left.right.equalToSuperview()
         }
@@ -99,7 +126,7 @@ class ActivityDetailerViewController: UIViewController {
         // TODO 7: add content
         let body = UIView()
         bodyView = body
-        view.addSubview(body)
+        addSubview(body)
         body.snp.makeConstraints { make in
             make.bottom.left.right.equalToSuperview()
             make.top.equalTo(headerView.snp.bottom)
@@ -125,41 +152,4 @@ class ActivityDetailerViewController: UIViewController {
             averageSpeedLabel.text = "🏎"
         }
     }
-}
-
-extension ActivityDetailerViewController: PanModalPresentable {
-    var panScrollable: UIScrollView? {
-        return nil
-    }
-    
-    var shortFormHeight: PanModalHeight {
-        view.layoutIfNeeded()
-        return .contentHeight(headerView.frame.height + additionalSafeAreaInsets.bottom)
-    }
-
-    var longFormHeight: PanModalHeight {
-        view.layoutIfNeeded()
-        return .maxHeightWithTopInset(40)
-    }
-    
-    var panModalBackgroundColor: UIColor {
-        UIColor.clear
-    }
-    
-    // TODO 6: have a corner radius and shadows
-    var cornerRadius: CGFloat {
-        0
-    }
-    
-    func panModalDidDismiss() {
-        delegate?.ActivityDetailerWillBeDismissed(self)
-    }
-}
-
-/// A protocol to be implemented to receive updates from ActivityDetailerViewController instnaces
-protocol ActivityDetailerViewControllerDelegate: class {
-    
-    /// Called when the view controller will be dismissed from a pan modal presentation
-    /// - Parameter viewController: The view controller being dismissed
-    func ActivityDetailerWillBeDismissed(_ viewController: ActivityDetailerViewController)
 }

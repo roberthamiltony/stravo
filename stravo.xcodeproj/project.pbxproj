@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -34,13 +34,10 @@
 		722276BD23E0148200D8E72F /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722276BC23E0148200D8E72F /* Coordinator.swift */; };
 		722276BF23E0173A00D8E72F /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722276BE23E0173A00D8E72F /* AppCoordinator.swift */; };
 		722276C123E01D4000D8E72F /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722276C023E01D4000D8E72F /* WelcomeViewController.swift */; };
-		722276C423E01DB100D8E72F /* PanModal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 722276C323E01DB100D8E72F /* PanModal.framework */; };
-		722276C523E01DB100D8E72F /* PanModal.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 722276C323E01DB100D8E72F /* PanModal.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		722276C823E01DB400D8E72F /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 722276C723E01DB400D8E72F /* SnapKit.framework */; };
-		722276C923E01DB400D8E72F /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 722276C723E01DB400D8E72F /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		722276CC23E1684F00D8E72F /* OAuthSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 722276CB23E1684E00D8E72F /* OAuthSwift.framework */; };
-		722276CD23E1684F00D8E72F /* OAuthSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 722276CB23E1684E00D8E72F /* OAuthSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		722276D423E4195E00D8E72F /* StravaClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722276D323E4195E00D8E72F /* StravaClient.swift */; };
+		723557872605FF4600E46A63 /* OAuthSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 723557862605FF4600E46A63 /* OAuthSwift */; };
+		7235578C2605FF6600E46A63 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7235578B2605FF6600E46A63 /* SnapKit */; };
+		72355795260600C000E46A63 /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72355794260600C000E46A63 /* BottomSheetViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,9 +64,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				722276C523E01DB100D8E72F /* PanModal.framework in Embed Frameworks */,
-				722276C923E01DB400D8E72F /* SnapKit.framework in Embed Frameworks */,
-				722276CD23E1684F00D8E72F /* OAuthSwift.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -112,10 +106,8 @@
 		722276BC23E0148200D8E72F /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		722276BE23E0173A00D8E72F /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		722276C023E01D4000D8E72F /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
-		722276C323E01DB100D8E72F /* PanModal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PanModal.framework; path = Carthage/Build/iOS/PanModal.framework; sourceTree = "<group>"; };
-		722276C723E01DB400D8E72F /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
-		722276CB23E1684E00D8E72F /* OAuthSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OAuthSwift.framework; path = Carthage/Build/iOS/OAuthSwift.framework; sourceTree = "<group>"; };
 		722276D323E4195E00D8E72F /* StravaClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StravaClient.swift; sourceTree = "<group>"; };
+		72355794260600C000E46A63 /* BottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,9 +115,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				722276C423E01DB100D8E72F /* PanModal.framework in Frameworks */,
-				722276C823E01DB400D8E72F /* SnapKit.framework in Frameworks */,
-				722276CC23E1684F00D8E72F /* OAuthSwift.framework in Frameworks */,
+				723557872605FF4600E46A63 /* OAuthSwift in Frameworks */,
+				7235578C2605FF6600E46A63 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -218,6 +209,7 @@
 		7222768623E011D800D8E72F /* stravo */ = {
 			isa = PBXGroup;
 			children = (
+				72355793260600AF00E46A63 /* bottom sheet */,
 				720B39D623E9F36300488A67 /* configs */,
 				720F1FE023E56CAF0039F445 /* stravo.entitlements */,
 				722276D223E4194600D8E72F /* strava */,
@@ -294,9 +286,6 @@
 		722276C223E01DB000D8E72F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				722276CB23E1684E00D8E72F /* OAuthSwift.framework */,
-				722276C723E01DB400D8E72F /* SnapKit.framework */,
-				722276C323E01DB100D8E72F /* PanModal.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -311,6 +300,14 @@
 			path = strava;
 			sourceTree = "<group>";
 		};
+		72355793260600AF00E46A63 /* bottom sheet */ = {
+			isa = PBXGroup;
+			children = (
+				72355794260600C000E46A63 /* BottomSheetViewController.swift */,
+			);
+			path = "bottom sheet";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -322,13 +319,16 @@
 				7222768123E011D800D8E72F /* Frameworks */,
 				7222768223E011D800D8E72F /* Resources */,
 				722276C623E01DB100D8E72F /* Embed Frameworks */,
-				722276CA23E01DF300D8E72F /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = stravo;
+			packageProductDependencies = (
+				723557862605FF4600E46A63 /* OAuthSwift */,
+				7235578B2605FF6600E46A63 /* SnapKit */,
+			);
 			productName = stravo;
 			productReference = 7222768423E011D800D8E72F /* stravo.app */;
 			productType = "com.apple.product-type.application";
@@ -393,7 +393,7 @@
 				};
 			};
 			buildConfigurationList = 7222767F23E011D800D8E72F /* Build configuration list for PBXProject "stravo" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -401,6 +401,10 @@
 				Base,
 			);
 			mainGroup = 7222767B23E011D800D8E72F;
+			packageReferences = (
+				723557852605FF4600E46A63 /* XCRemoteSwiftPackageReference "OAuthSwift" */,
+				7235578A2605FF6600E46A63 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 7222768523E011D800D8E72F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -438,35 +442,13 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		722276CA23E01DF300D8E72F /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/SnapKit.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/PanModal.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/OAuthSwift.framework",
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		7222768023E011D800D8E72F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				720F1FEB23E598A80039F445 /* DashboardCoordinator.swift in Sources */,
+				72355795260600C000E46A63 /* BottomSheetViewController.swift in Sources */,
 				722276D423E4195E00D8E72F /* StravaClient.swift in Sources */,
 				722276BF23E0173A00D8E72F /* AppCoordinator.swift in Sources */,
 				72012AF923E71189002D4A99 /* DashboardViewModel.swift in Sources */,
@@ -657,7 +639,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = stravo/stravo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = UHG35942S7;
+				DEVELOPMENT_TEAM = DSRCS6Z84K;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -681,7 +663,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = stravo/stravo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = UHG35942S7;
+				DEVELOPMENT_TEAM = DSRCS6Z84K;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -826,6 +808,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		723557852605FF4600E46A63 /* XCRemoteSwiftPackageReference "OAuthSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/OAuthSwift/OAuthSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.2;
+			};
+		};
+		7235578A2605FF6600E46A63 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		723557862605FF4600E46A63 /* OAuthSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 723557852605FF4600E46A63 /* XCRemoteSwiftPackageReference "OAuthSwift" */;
+			productName = OAuthSwift;
+		};
+		7235578B2605FF6600E46A63 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7235578A2605FF6600E46A63 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7222767C23E011D800D8E72F /* Project object */;
 }

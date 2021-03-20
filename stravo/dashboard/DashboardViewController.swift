@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import PanModal
 import SnapKit
 
 
@@ -27,15 +26,17 @@ class DashboardViewController: UIViewController {
     
     private var activityDetailer: ActivityDetailerViewController!
     private var activityOverview: ActivityMapViewController!
-    private var showDetailerButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupOverview()
         setupDetailer()
-        setupShowDetailerButton()
-        didSelectShowDetails(nil)
         applyActivity(forIndex: 0)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        activityDetailer.snap(to: activityDetailer.headerSize)
     }
     
     private func setupOverview() {
@@ -51,24 +52,10 @@ class DashboardViewController: UIViewController {
     private func setupDetailer() {
         let detailer = ActivityDetailerViewController()
         activityDetailer = detailer
-        detailer.delegate = self
-        if let insets = navigationController?.view.safeAreaInsets {
-            detailer.additionalSafeAreaInsets = insets
-        }
-    }
-    
-    private func setupShowDetailerButton() {
-        let button = UIButton()
-        showDetailerButton = button
-        // TODO 4: have a nicer button than this
-        button.setTitle("📊", for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 40)
-        button.addTarget(self, action: #selector(didSelectShowDetails(_:)), for: .touchUpInside)
-        view.addSubview(button)
-        button.snp.makeConstraints { make in
-            make.width.height.equalTo(64)
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(16)
-            make.left.equalToSuperview().inset(16)
+        addChild(detailer)
+        view.addSubview(detailer.view)
+        detailer.view.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
     }
     
@@ -85,19 +72,7 @@ class DashboardViewController: UIViewController {
         }
         let activity = viewModel.activity(index: index)
         activityOverview.activity = activity
-        activityDetailer?.stravaActivity = activity
-    }
-    
-    @objc private func didSelectShowDetails(_ sender: Any?) {
-        if !isPanModalPresented {
-            UIView.animate(withDuration: 0.2, animations: ({
-                self.showDetailerButton.alpha = 0
-                
-            }), completion: { _ in
-                self.showDetailerButton.isHidden = true
-            })
-            presentPanModal(activityDetailer)
-        }
+        activityDetailer?.detail.stravaActivity = activity
     }
 }
 
@@ -113,11 +88,4 @@ extension DashboardViewController: DashboardViewModelDelegate {
     }
 }
 
-extension DashboardViewController: ActivityDetailerViewControllerDelegate {
-    func ActivityDetailerWillBeDismissed(_ viewController: ActivityDetailerViewController) {
-        UIView.animate(withDuration: 0.2) {
-            self.showDetailerButton.isHidden = false
-            self.showDetailerButton.alpha = 1
-        }
-    }
-}
+
