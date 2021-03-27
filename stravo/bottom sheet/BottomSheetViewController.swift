@@ -15,6 +15,7 @@ protocol BottomSheetViewControllerDelegate: class {
 }
 
 /// A view controller presenting content through a bottom sheet.
+/// TODO: How can I get content within the sheet to pin to the bottom of the sheet
 class BottomSheetViewController: UIViewController {
     
     weak var delegate: BottomSheetViewControllerDelegate?
