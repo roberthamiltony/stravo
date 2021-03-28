@@ -33,7 +33,9 @@ class AppCoordinator: Coordinator {
         if AppCoordinator.shouldShowSplash {
             showOOB()
         } else {
-            showDashboard()
+            StravaClient.shared.reauthenticate { success in
+                success ? self.showDashboard() : self.showOOB()
+            }
         }
     }
     

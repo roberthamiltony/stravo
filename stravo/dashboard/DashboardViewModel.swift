@@ -21,18 +21,18 @@ class DashboardViewModel {
     /// A flag, indicating whether a request for more activities is currently awaiting response.
     private (set) var loading: Bool = false
     
-    /// An implementation of DashboardViewModelDelgate to handle updates from this instance
+    /// An implementation of DashboardViewModelDelegate to handle updates from this instance
     weak var delegate: DashboardViewModelDelegate?
     
     /// The current number of activities which can be indexed. This is not necessarily the total number of activities associated with the
-    /// athlete, just the number currently associated with this instace. To request more, use requestActivities.
+    /// athlete, just the number currently associated with this instance. To request more, use requestActivities.
     var currentActivityCount: Int {
         return activities.count
     }
     
     /// Initializes an instance of DashboardViewModel, optionally with a StravaClient with which calls will be made. If no client is
     /// provided, the default shared instance will be used.
-    /// - Parameter client: A StravaClient instance to make API calls wil
+    /// - Parameter client: A StravaClient instance to make API calls with
     init(client: StravaClient = StravaClient.shared) {
         stravaClient = client
     }

@@ -57,21 +57,13 @@ class ActivityDetailerView: UIView {
     
     init() {
         super.init(frame: .zero)
-        setupShadow()
         setupHeader()
         setupBody()
         reloadData()
-        backgroundColor = .white
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func setupShadow() {
-        // TODO 6: actually set up a shadow
-        layer.borderWidth = 1
-        layer.borderColor = UIColor.lightGray.cgColor
     }
     
     private func setupHeader() {

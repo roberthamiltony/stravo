@@ -87,9 +87,9 @@ class BottomSheetViewController: UIViewController {
     }
     
     private func calculateSnapPoint() -> SnapPoint {
-        let currentOffset = bottomSheetTopConstraint.constant
+        let currentOffset = abs(bottomSheetTopConstraint.constant)
         let minimum = snapPoints.min(by: { lhs, rhs in
-            (-lhs.constant - currentOffset) < (-rhs.constant - currentOffset)
+            abs(lhs.constant - currentOffset) < abs(rhs.constant - currentOffset)
         })
         return minimum ?? hidden
     }
@@ -156,7 +156,7 @@ class BottomSheetView: UIView {
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
         layer.cornerRadius = 12
-        backgroundColor = .white
+        backgroundColor = .systemBackground
         addViews()
         setupConstraints()
     }

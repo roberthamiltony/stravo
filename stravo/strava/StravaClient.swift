@@ -37,7 +37,7 @@ class StravaClient: Authenticating, APIClient {
     }
     
     private var authHeader: [String: String] {
-        return ["Authorization": "Bearer \(authenticator.client.credential.oauthToken)"]
+        ["Authorization": "Bearer \(authenticator.client.credential.oauthToken)"]
     }
     
     func authenticate(completion: ((Bool) -> Void)? = nil) {
@@ -47,10 +47,7 @@ class StravaClient: Authenticating, APIClient {
             withCallbackURL: callbackURL,
             scope: "activity:read_all",
             state: "someState",
-            parameters: [
-                "approval_prompt": "force",
-                "grant_type":      "authorization_code"
-            ]
+            parameters: ["approval_prompt": "force", "grant_type": "authorization_code"]
         ) { result in
             switch result {
             case .success(let credential, _, _):
@@ -65,10 +62,26 @@ class StravaClient: Authenticating, APIClient {
         }
     }
     
+    /// TODO work out how to properly include this within the flow as it's a bit of a hack at the moment.
+    /// - Parameter completion: Called with the binary result of the reauthentication
+    func reauthenticate(completion: @escaping ((Bool) -> Void)) {
+        authenticator.renewAccessToken(
+            withRefreshToken: authenticator.client.credential.oauthRefreshToken
+        ) { result in
+            switch result {
+            case .success((let credential, _, _)):
+                self.authenticated = true
+                KeychainHelper.stravaAccessToken = credential.oauthToken
+                KeychainHelper.stravaRefreshToken = credential.oauthRefreshToken
+                completion(true)
+            case .failure(let error):
+                print(error)
+                completion(false)
+            }
+        }
+    }
     
-    func makeRequest<T: APIRequest>(
-        _ request: T, completion: @escaping RequestResponse<T.entity>
-    ){
+    func makeRequest<T: APIRequest>(_ request: T, completion: @escaping RequestResponse<T.entity>) {
         authenticator.client.get(
             endpoint.appending(request.resourcePath),
             parameters: request.parameters ?? [:],
@@ -83,8 +96,6 @@ class StravaClient: Authenticating, APIClient {
                     completion(.failure(error))
                 }
             case .failure(let error):
-                // TODO 3: if this fails because the app is no longer authorized, the app should
-                // re-show the OOB log in flow
                 completion(.failure(error))
             }
         }
