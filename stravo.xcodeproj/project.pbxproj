@@ -38,6 +38,7 @@
 		723557872605FF4600E46A63 /* OAuthSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 723557862605FF4600E46A63 /* OAuthSwift */; };
 		7235578C2605FF6600E46A63 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7235578B2605FF6600E46A63 /* SnapKit */; };
 		72355795260600C000E46A63 /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72355794260600C000E46A63 /* BottomSheetViewController.swift */; };
+		72E0B1782610A0F800FA97E7 /* Polyline in Frameworks */ = {isa = PBXBuildFile; productRef = 72E0B1772610A0F800FA97E7 /* Polyline */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +118,7 @@
 			files = (
 				723557872605FF4600E46A63 /* OAuthSwift in Frameworks */,
 				7235578C2605FF6600E46A63 /* SnapKit in Frameworks */,
+				72E0B1782610A0F800FA97E7 /* Polyline in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,6 +330,7 @@
 			packageProductDependencies = (
 				723557862605FF4600E46A63 /* OAuthSwift */,
 				7235578B2605FF6600E46A63 /* SnapKit */,
+				72E0B1772610A0F800FA97E7 /* Polyline */,
 			);
 			productName = stravo;
 			productReference = 7222768423E011D800D8E72F /* stravo.app */;
@@ -404,6 +407,7 @@
 			packageReferences = (
 				723557852605FF4600E46A63 /* XCRemoteSwiftPackageReference "OAuthSwift" */,
 				7235578A2605FF6600E46A63 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				72E0B1762610A0F800FA97E7 /* XCRemoteSwiftPackageReference "Polyline" */,
 			);
 			productRefGroup = 7222768523E011D800D8E72F /* Products */;
 			projectDirPath = "";
@@ -826,6 +830,14 @@
 				minimumVersion = 5.0.1;
 			};
 		};
+		72E0B1762610A0F800FA97E7 /* XCRemoteSwiftPackageReference "Polyline" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/raphaelmor/Polyline.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -838,6 +850,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7235578A2605FF6600E46A63 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		72E0B1772610A0F800FA97E7 /* Polyline */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 72E0B1762610A0F800FA97E7 /* XCRemoteSwiftPackageReference "Polyline" */;
+			productName = Polyline;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

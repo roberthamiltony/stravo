@@ -90,7 +90,9 @@ class StravaClient: Authenticating, APIClient {
             switch result {
             case .success(let response):
                 do {
-                    let results = try JSONDecoder().decode(T.entity.self, from: response.data)
+                    let decoder = JSONDecoder()
+                    decoder.keyDecodingStrategy = .convertFromSnakeCase
+                    let results = try decoder.decode(T.entity.self, from: response.data)
                     completion(.success(results))
                 } catch {
                     completion(.failure(error))

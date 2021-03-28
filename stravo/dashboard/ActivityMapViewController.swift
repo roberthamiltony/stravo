@@ -17,12 +17,17 @@ class ActivityMapViewController: UIViewController {
     /// The activity the map will detail
     var activity: StravaActivity? {
         didSet {
-            if let activity = activity, let lat = activity.startLatitude, let long = activity.startLongitude {
-                map.region = MKCoordinateRegion(
-                    center: CLLocationCoordinate2D(latitude: lat, longitude: long),
-                    span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
-                )
-            }
+            guard
+                let activity = activity,
+                let lat = activity.startLatitude,
+                let long = activity.startLongitude,
+                let polyline = activity.map?.decodedPolyline.mkPolyline
+            else { return }
+            map.region = MKCoordinateRegion(
+                center: CLLocationCoordinate2D(latitude: lat, longitude: long),
+                span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+            )
+            map.addOverlay(polyline)
         }
     }
     
@@ -93,5 +98,16 @@ extension ActivityMapViewController: MKMapViewDelegate {
             self.loadingIndicator.stopAnimating()
             self.loadingLabel.text = "Failed to load map"
         }
+    }
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        if let routePolyline = overlay as? MKPolyline {
+            let renderer = MKPolylineRenderer(polyline: routePolyline)
+            renderer.strokeColor = UIColor.blue.withAlphaComponent(0.9)
+            renderer.lineWidth = 7
+            return renderer
+        }
+
+        return MKOverlayRenderer()
     }
 }

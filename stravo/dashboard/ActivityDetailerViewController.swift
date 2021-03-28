@@ -132,7 +132,7 @@ class ActivityDetailerView: UIView {
         } else {
             distanceLabel.text = "🗺"
         }
-        if let elevation = stravaActivity?.totalElevation {
+        if let elevation = stravaActivity?.totalElevationGain {
             elevationLabel.text = String(format: "🏔 %.1fm", elevation)
         } else {
             elevationLabel.text = "🏔"
